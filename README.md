@@ -9,7 +9,9 @@ With this worker you can run your Ghost blog with a `Cache Everything` Page Rule
 When a post is published or updated a Ghost webhook will trigger this worker to purge that page from the Cloudflare cache.
 
 This project is a fork of 'milgradesec/ghost-cache-purge-worker'.
-This fork __supports multiple Ghost sites__ in different __Cloudflare Zones ID__. 
+
+This fork __supports multiple Ghost sites__ in different __Cloudflare Zones ID__. Usefull if you manage multiple Ghost projects !
+
 The only settings to push is the __API token__ to allow this Worker to clean the content cache.
 
 ## 📙 Usage
@@ -43,7 +45,7 @@ wrangler secret put CF_API_TOKEN
 Publish the script to Cloudflare:
 
 ```shell
-wrangler publish
+wrangler deploy
 ```
 
 ### 🪝 Set up Ghost integration
@@ -54,11 +56,11 @@ Now add 2 webhooks in the bottom on the custom integration page :
 
 | NAME        | EVENT                  | URL                                                                    | 
 | ----------- | ---------------------- | ---------------------------------------------------------------------- |
-| Ping Worker | Post published         | <https://YOUR-WORKER-SUBDOMAIN.workers.dev/ZONE_ID/postPublished> | 
-| Ping Worker | Published post updated | <https://YOUR-WORKER-SUBDOMAIN.workers.dev/ZONE_ID/postUpdated>  | 
+| Ping Worker | Post published         | <https://YOUR-WORKER-SUBDOMAIN.workers.dev/CLOUDFLARE_ZONE_ID/postPublished> | 
+| Ping Worker | Published post updated | <https://YOUR-WORKER-SUBDOMAIN.workers.dev/CLOUDFLARE_ZONE_ID/postUpdated>  | 
 
-When you publish a new post : The sitemap and the homepage are purged.
-When you update a post : The sitemap and the post are purged.
+When you publish a new post : The sitemap, RSS feed and the homepage are purged.
+When you update a post : The sitemapn RSS feed and the post are purged.
 
 ### ⚙️ Configure Ghost caching 
 
