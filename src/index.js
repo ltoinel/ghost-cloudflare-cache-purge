@@ -121,10 +121,15 @@ function validateWebhookBody(body) {
  */
 function getUrlsToPurge(action, rootURL, postURL) {
 
-  const sitemapURL = `${rootURL}/sitemap-posts.xml`
-  const feedURL = `${rootURL}/rss/`
-
-  const urls = [sitemapURL, feedURL]
+  // Common URLs to purge
+  const urls = [
+    `${rootURL}/sitemap.xml`
+    `${rootURL}/sitemap-posts.xml`, 
+    `${rootURL}/sitemap-pages.xml`, 
+    `${rootURL}/sitemap-tags.xml`, 
+    `${rootURL}/sitemap-news/`,  // Ghost Custom News sitemap index
+    `${rootURL}/rss/`
+  ]
 
   if (action === ACTION_POST_PUBLISHED) {
     
@@ -135,7 +140,7 @@ function getUrlsToPurge(action, rootURL, postURL) {
 
     // Purge the post URL for updated posts
     urls.push(postURL)
-  }
+  } 
 
   return urls
 }
