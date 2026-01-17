@@ -116,14 +116,13 @@ function validateWebhookBody(body) {
  * @param {string} action The webhook action
  * @param {string} rootURL The root URL of the site
  * @param {string} postURL The post URL
- * @param {string} sitemapURL The sitemap URL
  * @returns {Array<string>} List of URLs to purge
  */
 function getUrlsToPurge(action, rootURL, postURL) {
 
   // Common URLs to purge
   const urls = [
-    `${rootURL}/sitemap.xml`
+    `${rootURL}/sitemap.xml`,
     `${rootURL}/sitemap-posts.xml`, 
     `${rootURL}/sitemap-pages.xml`, 
     `${rootURL}/sitemap-tags.xml`, 

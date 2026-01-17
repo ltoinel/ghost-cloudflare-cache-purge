@@ -1,6 +1,7 @@
 # ghost-cloudflare-cache-purge
 
 A simple Cloudflare Worker to purge cached pages when a post is published or updated from the Ghost CMS administration pages.
+![Architecture Diagram](doc/schema.png)
 
 ## ❓ Why
 
@@ -42,6 +43,8 @@ Set the `CF_API_TOKEN` secret with the API token previously created :
 wrangler secret put CF_API_TOKEN
 ```
 
+The secret is the API Token created.
+
 Publish the script to Cloudflare:
 
 ```shell
@@ -60,7 +63,7 @@ Now add 2 webhooks in the bottom on the custom integration page :
 | Ping Worker | Published post updated | <https://YOUR-WORKER-SUBDOMAIN.workers.dev/CLOUDFLARE_ZONE_ID/postUpdated>  | 
 
 When you publish a new post : The sitemap, RSS feed and the homepage are purged.
-When you update a post : The sitemapn RSS feed and the post are purged.
+When you update a post : The sitemap, RSS feed and the post are purged.
 
 ### ⚙️ Configure Ghost caching 
 
